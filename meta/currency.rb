@@ -1,12 +1,12 @@
-# Converts USD to yen, euro, and rupee
+# Converts USD, yen, euro, to INR rupee
 class Numeric
-  @@currencies = {'yen' => 0.013, 'euro'=>1.292, 'rupee' => 0.019}
+  @@currencies = {'yen' => 1.55, 'euro'=>0.013, 'usd' => 0.014}
 
   # capture all args in case we have to call super
   def method_missing(method_id, *args, &block)
     currency = method_id.to_s.gsub(/s$/,'')
     if @@currencies.has_key?(currency)
-      self * @@currencies[currency]
+      self / @@currencies[currency]
     else
       super
     end
@@ -18,6 +18,6 @@ end
 
 # Test cases
 
-puts "100 USD is #{100.yen} yen"
-puts "100 USD is #{100.euro} euro"
-puts "100 USD is #{100.rupee} inr"
+puts "100000 yen is #{100000.yen.round(3)} INR"
+puts "100000 euro is #{100000.euro.round(3)} INR"
+puts "100000 usd is #{100000.usd.round(3)} INR"
