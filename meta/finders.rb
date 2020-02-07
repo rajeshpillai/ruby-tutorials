@@ -2,7 +2,7 @@ require "active_support/inflector"
 
 @@db = {
   users: [{id:1, username:"user1"}, {id:2, username:"user2"}],
-  tasks: [{id:1, title:"task1"}, {id:2,title:"task"}]
+  tasks: [{id:1, title:"task 1", completed: true}, {id:2,title:"task 2", completed: false}, {id:3, title: "task 3", completed: true}]
 }
 
 class Model 
@@ -24,7 +24,7 @@ class Model
  
   def self.connect
     class_name = to_s.downcase.pluralize  # users
-    puts "#{self} #{class_name} is getting initialized..."
+    # puts "#{self} #{class_name} is getting initialized..."
    
     @@data = @@db[:"#{class_name}"] 
   end
@@ -43,7 +43,7 @@ class Model
   #end
 
   def self.method_missing(method, *args, &block)
-    puts "#{method} with #{args} is not found"
+    #puts "#{method} with #{args} is not found"
     class_name = self.to_s.downcase.pluralize  # users
 
     method_tokens = method.to_s.split('_')
@@ -84,14 +84,14 @@ User.connect
 user1 = User.find_by_id(2)
 puts user1
 
-puts "Accessing data using model"
 
 # puts User.data
 
 Task.connect
-
-puts Task.data
-
 task = Task.find_by_id(1)
-
 puts task
+
+
+tasks = Task.find_by_completed(true)
+puts tasks
+
