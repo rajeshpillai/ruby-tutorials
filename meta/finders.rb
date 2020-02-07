@@ -14,7 +14,7 @@ class Model
   def initialize
     class_name = self.class.to_s.downcase.pluralize  # users
     
-    puts "#{self} #{class_name} is getting initialized..."
+    #puts "#{self} #{class_name} is getting initialized..."
   
    
     @@data = @@db[:"#{class_name}"] 
@@ -23,13 +23,13 @@ class Model
 
  
   def self.connect
-    class_name = self.class.to_s.downcase.pluralize  # users
+    class_name = to_s.downcase.pluralize  # users
     puts "#{self} #{class_name} is getting initialized..."
    
     @@data = @@db[:"#{class_name}"] 
   end
 
-  connect
+  #connect
 
 
   class << self
@@ -47,9 +47,25 @@ class Model
     class_name = self.to_s.downcase.pluralize  # users
 
     method_tokens = method.to_s.split('_')
-    puts method_tokens[2]     # the last token (find_by_id => id)
+    search_field = method_tokens[2]     # the last token (find_by_id => id)
     
+    if method_tokens[0] == "find"
+      puts "finding #{class_name} by #{search_field}"
 
+      results = []
+      self.data.each do |row|
+        if row.key? (search_field.to_sym)  
+          if args[0] == row[search_field.to_sym]
+            results << row
+          end
+        end
+      
+      end
+      results
+      
+    else
+      super  
+    end
   end
 
 end
@@ -63,24 +79,19 @@ class Task < Model
 
 end
 
+User.connect
 
-u = User.new
-puts u
-
-puts  User.find_by_id(1)
-
-puts "Users table"
-puts @@db[:users]
-
-puts "Tasks table"
-puts @@db[:tasks]
-
+user1 = User.find_by_id(2)
+puts user1
 
 puts "Accessing data using model"
 
-puts User.data
-puts "----------------------------"
+# puts User.data
+
+Task.connect
 
 puts Task.data
 
+task = Task.find_by_id(1)
 
+puts task
