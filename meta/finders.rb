@@ -8,12 +8,9 @@ require "active_support/inflector"
 class Model 
    attr_accessor :data
 
-  #@data =  [{id:1, title:"task1"}, {id:2, title:"task2"}]
-
-  #def self.data
-  #  @@data
-  #end
    
+
+
   def initialize
     class_name = self.class.to_s.downcase.pluralize  # users
     
@@ -23,6 +20,16 @@ class Model
     @@data = @@db[:"#{class_name}"] 
   
   end
+
+ 
+  def self.connect
+    class_name = self.class.to_s.downcase.pluralize  # users
+    puts "#{self} #{class_name} is getting initialized..."
+   
+    @@data = @@db[:"#{class_name}"] 
+  end
+
+  connect
 
 
   class << self
