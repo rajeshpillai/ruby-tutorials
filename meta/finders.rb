@@ -28,7 +28,7 @@ class Model
   end
 
   def self.method_missing(method, *args, &block)
-    #puts "#{method} with #{args} is not found"
+    puts "#{method} with #{args} is not found"
     class_name = self.to_s.downcase.pluralize  # users
 
     method_tokens = method.to_s.split('_')
@@ -45,10 +45,8 @@ class Model
             results << row
           end
         end
-      
       end
       results
-      
     else
       super  
     end
@@ -72,7 +70,7 @@ puts user1
 
 # Task.connect
 puts "Find task by id 1"
-task = Task.find_by_id(1)
+task = Task.find_by_id(1) { puts "block"}
 puts task
 
 puts "Find tasks by completed: true"
