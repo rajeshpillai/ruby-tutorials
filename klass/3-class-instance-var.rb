@@ -28,7 +28,7 @@ class Animal
 end
 
 class Dog < Animal
-  @sound = 'woof!'
+  @sound = 'woof!'  # class instance variable
 end
 
 class Cat < Animal
