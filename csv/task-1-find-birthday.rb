@@ -1,4 +1,4 @@
-# Task: Find birthday given firstname and last name
+# Task 1: Find birthday given firstname and last name
 # Steps
 #   - Get the argumetns: first and last names
 #   - Check the argument count.
