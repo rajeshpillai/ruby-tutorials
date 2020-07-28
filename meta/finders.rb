@@ -1,6 +1,6 @@
 require "active_support/inflector"
 
-@@db = {
+$db = {
   users: [{id:1, username:"user1"}, {id:2, username:"user2"}],
   tasks: [{id:1, title:"task 1", completed: true}, {id:2,title:"task 2", completed: false}, {id:3, title: "task 3", completed: true}]
 }
@@ -17,7 +17,7 @@ class Model
     #puts "#{self} #{class_name} is getting initialized..."
   
    
-    @@data = @@db[:"#{class_name}"] 
+    @@data = $db[:"#{class_name}"] 
   
   end
 
@@ -26,7 +26,7 @@ class Model
     class_name = to_s.downcase.pluralize  # users
     # puts "#{self} #{class_name} is getting initialized..."
    
-    @@data = @@db[:"#{class_name}"] 
+    @@data = $db[:"#{class_name}"] 
   end
 
   #connect
