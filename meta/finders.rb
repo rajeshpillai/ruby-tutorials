@@ -10,11 +10,7 @@ class Model
 
   def initialize
     class_name = self.class.to_s.downcase.pluralize  # users
-    
     puts "#{self} #{class_name} is getting initialized..."
-   
-    # @@data = $db[:"#{class_name}"] 
-  
   end
 
  
@@ -26,14 +22,6 @@ class Model
     puts @data
   end
 
-  #connect
-
-  # class level variable
-  # class << self
-  #   def data
-  #     @@data
-  #   end
-  # end
 
   def self.data
    @data
@@ -48,7 +36,7 @@ class Model
     
     if method_tokens[0] == "find"
       puts "finding #{class_name} by #{search_field}"
-      puts "Search data: ", self.data
+      # puts "Search data: ", self.data
 
       results = []
       self.data.each do |row|
@@ -83,13 +71,15 @@ puts user1
 
 
 # Task.connect
+puts "Find task by id 1"
 task = Task.find_by_id(1)
 puts task
 
+puts "Find tasks by completed: true"
 tasks = Task.find_by_completed(true)
 puts tasks
 
-puts "USERS: ", User.data
-puts "TASKS: ", Task.data
+# puts "USERS: ", User.data
+# puts "TASKS: ", Task.data
 
 
