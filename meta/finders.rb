@@ -6,41 +6,38 @@ $db = {
 }
 
 class Model 
-   attr_accessor :data
-
-   
-
+  attr_accessor :data
 
   def initialize
     class_name = self.class.to_s.downcase.pluralize  # users
     
-    #puts "#{self} #{class_name} is getting initialized..."
-  
+    puts "#{self} #{class_name} is getting initialized..."
    
-    @@data = $db[:"#{class_name}"] 
+    # @@data = $db[:"#{class_name}"] 
   
   end
 
  
   def self.connect
     class_name = to_s.downcase.pluralize  # users
-    # puts "#{self} #{class_name} is getting initialized..."
+    puts "#{self} #{class_name} is getting initialized..."
    
-    @@data = $db[:"#{class_name}"] 
+    @data = $db[:"#{class_name}"] 
+    puts @data
   end
 
   #connect
 
+  # class level variable
+  # class << self
+  #   def data
+  #     @@data
+  #   end
+  # end
 
-  class << self
-    def data
-      @@data
-    end
+  def self.data
+   @data
   end
-
-  #def self.data
-  #  @@data
-  #end
 
   def self.method_missing(method, *args, &block)
     #puts "#{method} with #{args} is not found"
@@ -51,6 +48,7 @@ class Model
     
     if method_tokens[0] == "find"
       puts "finding #{class_name} by #{search_field}"
+      puts "Search data: ", self.data
 
       results = []
       self.data.each do |row|
@@ -71,27 +69,27 @@ class Model
 end
 
 class User < Model
-  
-  
+  connect
 end
 
 class Task < Model
-
+  connect
 end
 
-User.connect
+# User.connect
 
 user1 = User.find_by_id(2)
 puts user1
 
 
-# puts User.data
-
-Task.connect
+# Task.connect
 task = Task.find_by_id(1)
 puts task
 
-
 tasks = Task.find_by_completed(true)
 puts tasks
+
+puts "USERS: ", User.data
+puts "TASKS: ", Task.data
+
 
