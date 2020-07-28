@@ -1,3 +1,8 @@
+#DOCS:
+# https://docs.ruby-lang.org/en/2.4.0/WEBrick.html
+# https://github.com/ruby/webrick/blob/master/test/webrick/test_httpserver.rb
+# https://www.igvita.com/2007/02/13/building-dynamic-webrick-servers-in-ruby/
+
 require 'webrick'
 
 include WEBrick
