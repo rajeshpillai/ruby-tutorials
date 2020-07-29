@@ -8,7 +8,7 @@ class Router
   end
 
    # this method receives block of code
-   def routes(&block) #convert proc to block
+   def routes(&block) #convert block to proc
      # yield -> will execute block of code in the main context
      instance_eval(&block)  #convert proc to block again
      puts @routes
