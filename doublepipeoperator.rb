@@ -4,9 +4,12 @@ class Person
 
   def initialize (name, ageVar)  # constructor
     @name = name
-    self.age = ageVar
-  
-    puts age
+    self.age = ageVar  # will invoke the setter
+    # age = ageVar   # will be local variable at init
+    # @age = ageVar
+
+    p local_variables
+    p instance_variables
   end
 
   def age= (new_age)
