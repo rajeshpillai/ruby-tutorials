@@ -1,3 +1,6 @@
+# https://www.hawkins.io/blog/2019/rack-walkthrough/
+
+
 # You'll notice similiaries between Ruby web applications built using Rails, Sinatra, Roda, or one of the numerous other options. You'll find similiarties in them all from they integreate with web servers and third party libaries. Rack makes this possible.
 
 # Rack is the HTTP interface for Ruby. Rack defines a standard interface for interacting with HTTP and connecting web servers. Rack makes it easy to write HTTP facing applications in Ruby. Rack applications are shockingly simple. There is the code that accepts a request and code serves the response. Rack defines the interface between the two.
