@@ -24,7 +24,7 @@ class Invoice
 end	
 
 class ProformaInvoice < Invoice  
-
+	#  @@file_path = "/proforma_path"   # This will overrite the variable
 end
 
 inv = Invoice.new(qty: 5, unitprice: 10)
