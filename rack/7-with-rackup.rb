@@ -2,7 +2,7 @@ require 'rack'
 require 'rack/server'
 
 
-#RUN IT WITH URL:  http://localhost:9292/?a=bcd
+# URL: http://localhost:9292/?a=bcd
 
 class ParamsParser
   def initialize(app)
@@ -56,19 +56,17 @@ end
 
 class HelloWorldApp
   def self.call(env)
-    # parser = ParamsParser.new self
-    # env = parser.call env
 
     [ 200, { }, [ env['params'].inspect ] ]
   end
 end
 
 
-app = Rack::Builder.new do
-  use Timer # put the timer at the top so it captures everything below it
-  use EnsureJsonResponse
-  use ParamsParser
-  run HelloWorldApp
-end
+# app = Rack::Builder.new do
+#   use Timer # put the timer at the top so it captures everything below it
+#   use EnsureJsonResponse
+#   use ParamsParser
+#   run HelloWorldApp
+# end
 
-Rack::Server.start :app => app
+# RUN the $ rackup  #command from the command line
