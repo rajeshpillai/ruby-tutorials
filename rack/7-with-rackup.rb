@@ -2,7 +2,7 @@ require 'rack'
 require 'rack/server'
 
 
-# URL: http://localhost:9292/?a=bcd
+#RUN IT WITH URL: http://localhost:9292/?a=bcd
 
 class ParamsParser
   def initialize(app)
