@@ -9,8 +9,8 @@ end
 
 module Feature1
 	
-	def self.s1 
-		puts "s1"
+	def self.s1(p1)
+		puts "s1 " + p1
 	end
 
 	def f1
@@ -34,6 +34,6 @@ app = App.new
 
 app.f1 
 App.f2 
-Feature1.s1 
+Feature1.s1 ("parameter s1")
 
-App.s1 
+App.s1("parameter 1")
