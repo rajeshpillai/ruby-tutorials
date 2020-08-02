@@ -9,6 +9,7 @@ module ActiveRecord
   class Migration
     def self.inherited(subclass) #:nodoc:
       super
+      p subclass.superclass
       if subclass.superclass == Migration
         raise StandardError, "Directly inheriting from ActiveRecord::Migration is not supported. " \
           "Please specify the Rails release the migration was written for:\n" \
@@ -16,10 +17,15 @@ module ActiveRecord
           "  class #{subclass} < ActiveRecord::Migration[4.2]"
       end
     end
+
+    def self.[](version)
+      self
+    end
+
   end
 end
 
-class MyClass < ActiveRecord::Migration[6.0]
+class AddFirstnameToUsers  < ActiveRecord::Migration[6.0]
 
 end
 
